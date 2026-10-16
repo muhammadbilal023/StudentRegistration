@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- HOME PAGE -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.studentregistration.ui.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <!-- REGISTRATION PAGE -->
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.studentregistration.ui.RegistrationFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_registration">
+        <!-- popUpTo Home: pressing Back from Search returns to Home, not to a stale form -->
+        <action
+            android:id="@+id/action_registrationFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+
+    <!-- STUDENT SEARCH PAGE (optionally receives a studentId) -->
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.studentregistration.ui.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search">
+        <argument
+            android:name="studentId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+</navigation>
